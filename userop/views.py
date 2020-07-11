@@ -51,5 +51,5 @@ class AddData(generics.GenericAPIView, mixins.CreateModelMixin):
         t.ProblemTitle = "ttt"
         t.MobileNubers = "ttt"
         t.save()
-        return Response("hogaya insert")
+        return Response("Inserted Sucessfully")
 
