@@ -11,6 +11,9 @@ from rest_framework import generics
 from rest_framework import mixins
 from django.http import JsonResponse
 from .models import TestQuery
+from pprint import pprint
+from .serializers import TestQuerySerializer
+
 
 class LoginView(APIView):
     def post(self, request):
@@ -34,8 +37,10 @@ class LogoutView(APIView):
 
 class Home(APIView):
 
-    def post(self,request):
-        return Response("Welcome to home")
+    def get(self,request):
+        testQueryData = TestQuery.objects.all()
+        serializer = TestQuerySerializer(testQueryData,many=True)
+        return Response(serializer.data)
 
 
 class AddData(generics.GenericAPIView, mixins.CreateModelMixin):
@@ -46,10 +51,10 @@ class AddData(generics.GenericAPIView, mixins.CreateModelMixin):
 
     def post(self,request):
         t = TestQuery()
-        t.State = "ttt"
+        t.State = "state"
         t.ProblemID = 1
-        t.ProblemTitle = "ttt"
-        t.MobileNubers = "ttt"
+        t.ProblemTitle = "title"
+        t.MobileNubers = "number"
         t.save()
         return Response("Inserted Sucessfully")
 

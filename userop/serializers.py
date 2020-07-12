@@ -6,11 +6,11 @@ from rest_framework import exceptions
 from .models import TestQuery
 
 class TestQuerySerializer(serializers.ModelSerializer):
-    testQuery = TestQuery()
+
 
     class Meta:
-        model = User
-        fields = ['State', 'ProblemID','ProblemTitle', 'MobileNubers']
+        model = TestQuery
+        fields = '__all__'
 
 
 
