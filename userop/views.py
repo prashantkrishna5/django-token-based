@@ -43,7 +43,7 @@ class Home(APIView):
         return Response(serializer.data)
 
 
-class AddData(generics.GenericAPIView, mixins.CreateModelMixin):
+class AddData(APIView):
     authentication_classes = [TokenAuthentication]
 
     def get(self,request):
